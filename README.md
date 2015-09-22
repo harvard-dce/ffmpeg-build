@@ -18,8 +18,7 @@ will be statically compiled into `./bin`.
 
 ## License
 
-This project is licensed under the same terms as [the ruby aws-sdk
-itself](https://github.com/aws/aws-sdk-ruby/tree/master#license).
+I'll get back to you on that
 
 ## Copyright
 

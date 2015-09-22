@@ -12,6 +12,10 @@ will be statically compiled into `./bin`.
 
 * Dan Collis-Puro - [djcp](https://github.com/djcp)
 
+## See also
+
+* https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
+
 ## License
 
 This project is licensed under the same terms as [the ruby aws-sdk

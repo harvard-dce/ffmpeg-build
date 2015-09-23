@@ -1,5 +1,7 @@
 #!/bin/bash
 
 source ./common.sh
-tar cvf ${ffmpeg_version}-static.tgz bin/
+tarball="${ffmpeg_version}-static.tgz"
+tar cvf "$tarball" bin/
 
+aws s3 cp $tarball s3://$aws_asset_bucket/ --profile=$profile

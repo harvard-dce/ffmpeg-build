@@ -6,7 +6,7 @@ clusters.
 ## Requirements
 
 * Ensure you have the aws cli installed and configured correctly,
-* Runs on debian jessie (and probably ubuntu 14.04).
+* debian jessie or ubuntu 14.04.
 
 ## Getting Started
 

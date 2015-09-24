@@ -2,3 +2,4 @@ ffmpeg_sources/
 ffmpeg_build/
 ffmpeg-*/
 *.tgz
+.vagrant/

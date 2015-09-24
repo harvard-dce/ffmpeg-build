@@ -4,11 +4,26 @@ source ./common.sh
 
 rm -Rf $ffmpeg_version/* ffmpeg_build/* ffmpeg_sources/*
 
-sudo aptitude update
-sudo aptitude install yasm libfdk-aac-dev libx264-dev libmp3lame-dev libopus-dev libogg-dev \
-  autoconf automake build-essential libass-dev libfreetype6-dev \
-  libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev \
-  libxcb1-dev libxcb-shm0-dev libxcb-xfixes0-dev pkg-config texi2html zlib1g-dev
+# Build libraries
+sudo aptitude install -y yasm autoconf automake build-essential libtool pkg-config texi2html
+
+# Client codec libraries
+sudo aptitude install -y libass-dev libfreetype6-dev libmp3lame-dev libogg-dev libopus-dev libsdl1.2-dev libtheora-dev libva-dev libvdpau-dev libvorbis-dev libxcb-shm0-dev libxcb-xfixes0-dev libxcb1-dev zlib1g-dev
+
+cd $root_path/ffmpeg_sources
+git clone git://git.code.sf.net/p/opencore-amr/fdk-aac
+cd fdk-aac
+git checkout v0.1.4
+autoreconf -fiv
+PATH="$root_path/$ffmpeg_version:$PATH" ./configure --prefix="$root_path/ffmpeg_build" --disable-shared
+make && make install && make distclean
+
+cd $root_path/ffmpeg_sources
+wget ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-20150923-2245-stable.tar.bz2
+tar xvfj x264-snapshot-20150923-2245-stable.tar.bz2
+cd x264*
+PATH="$root_path/$ffmpeg_version:$PATH" ./configure --prefix="$root_path/ffmpeg_build" --bindir="$root_path/$ffmpeg_version" --enable-static
+PATH="$root_path/$ffmpeg_version:$PATH" make && make install && make distclean
 
 cd $root_path/ffmpeg_sources
 wget http://storage.googleapis.com/downloads.webmproject.org/releases/webm/libvpx-1.4.0.tar.bz2

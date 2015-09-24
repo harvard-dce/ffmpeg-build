@@ -1,7 +1,7 @@
-# static-ffmpeg-build
+# ffmpeg-build
 
 A simple harness to build a custom ffmpeg useful to DCE for matterhorn
-clusters.
+clusters. This includes updated vpx(webm), x264, and fdk-aac codecs.
 
 ## Requirements
 

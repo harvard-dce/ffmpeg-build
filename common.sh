@@ -12,4 +12,9 @@ if [ -z "$profile" ]; then
   profile="default"
 fi
 
+if [ -z "$x264_commit" ]; then
+  # The last known working commit in x264 - this can probably be updated relatively frequently
+  x264_commit="a01e339"
+fi
+
 root_path=$(pwd)

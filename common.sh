@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -z "$ffmpeg_version" ]; then
-  ffmpeg_version="ffmpeg-2.7.2"
+  ffmpeg_version="ffmpeg-3.2.4"
 fi
 
 if [ -z "$aws_asset_bucket" ]; then
@@ -14,7 +14,7 @@ fi
 
 if [ -z "$x264_commit" ]; then
   # The last known working commit in x264 - this can probably be updated relatively frequently
-  x264_commit="a01e339"
+  x264_commit="97eaef2"
 fi
 
 root_path=$(pwd)

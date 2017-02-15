@@ -13,7 +13,7 @@ sudo aptitude install -y libass-dev libfreetype6-dev libmp3lame-dev libogg-dev l
 cd $root_path/ffmpeg_sources
 git clone git://git.code.sf.net/p/opencore-amr/fdk-aac
 cd fdk-aac
-git checkout v0.1.4
+git checkout v0.1.5
 autoreconf -fiv
 PATH="$root_path/$ffmpeg_version:$PATH" ./configure --prefix="$root_path/ffmpeg_build" --disable-shared
 make && make install && make distclean
@@ -26,9 +26,9 @@ PATH="$root_path/$ffmpeg_version:$PATH" ./configure --prefix="$root_path/ffmpeg_
 PATH="$root_path/$ffmpeg_version:$PATH" make && make install && make distclean
 
 cd $root_path/ffmpeg_sources
-wget http://storage.googleapis.com/downloads.webmproject.org/releases/webm/libvpx-1.4.0.tar.bz2
-tar xjvf libvpx-1.4.0.tar.bz2
-cd libvpx-1.4.0
+wget https://github.com/webmproject/libvpx/archive/v1.6.1.tar.gz
+tar xzvf v1.6.1.tar.gz
+cd libvpx-1.6.1
 PATH="$root_path/$ffmpeg_version:$PATH" ./configure --prefix="$root_path/ffmpeg_build" --disable-examples --disable-unit-tests
 PATH="$root_path/$ffmpeg_version:$PATH" make
 make install

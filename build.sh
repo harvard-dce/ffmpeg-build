@@ -57,6 +57,20 @@ PATH="$root_path/$ffmpeg_version:$PATH" PKG_CONFIG_PATH="$root_path/ffmpeg_build
   --enable-libvpx \
   --enable-libx264 \
   --enable-nonfree
+  --enable-runtime-cpudetect \
+  --enable-version3 \
+  --enable-postproc \
+  --enable-avfilter \
+  --enable-pthreads \
+  --enable-x11grab \
+  --enable-libmp3lame \
+  --enable-libopenjpeg \
+  --enable-bzlib \
+  --enable-openal \
+  --enable-libopus \
+  --enable-libpulse \
+  --enable-libv4l2 \
+  --disable-debug
 PATH="$root_path/$ffmpeg_version:$PATH" make
 make install
 make distclean

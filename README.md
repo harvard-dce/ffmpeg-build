@@ -25,10 +25,9 @@ Run `./publish.sh` to create the tarball and publish to a shared asset s3
 bucket. Be sure you use the same ffmpeg version string that you did in the
 build config.
 
-Be sure you understand the necessary client libraries needed to install ffmpeg
-- ssh into the vagrant build machine via `vagrant ssh` and then run:
+Be sure you understand the necessary client libraries needed to install ffmpeg. Ssh into the vagrant build machine via `vagrant ssh` and then run:
 
-     for lib in $(ldd $(which ffmpeg) | cut -d ' ' -f 3); do dpkg -S $lib; done | cut -d ' ' -f 1 | sort | uniq | cut -d ':' -f 1
+    for lib in $(ldd $(which ffmpeg) | cut -d ' ' -f 3); do dpkg -S $lib; done | cut -d ' ' -f 1 | sort | uniq | cut -d ':' -f 1
 
 You should ensure these libraries are installed on any machine you run this on.
 

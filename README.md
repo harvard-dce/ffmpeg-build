@@ -18,7 +18,7 @@ before doing the vagrant dance above. This will build in a minimal ubuntu 14.04
 VM.
 
 When this completes successfully, you'll have ffmpeg binaries compiled for
-ubuntu 14.04 in the `ffmpeg-2.7.2` directory (or whatever version of ffmpeg you
+ubuntu 14.04 in the `ffmpeg-4.1` directory (or whatever version of ffmpeg you
 chose above in the `build_in_vagrant.sh` file).
 
 Run `./publish.sh` to create the tarball and publish to a shared asset s3
@@ -34,14 +34,14 @@ You should ensure these libraries are installed on any machine you run this on.
 ### Common ENV params
 
 * `ffmpeg_version` - this should match a released ffmpeg version found
-  [here](https://ffmpeg.org/releases). Defaults to `ffmpeg-2.7.2`,
+  [here](https://ffmpeg.org/releases). Defaults to `ffmpeg-4.1`,
 * `aws_asset_bucket` - the s3 bucket that you've got permissions to publish to,
 * `profile` - the profile in your [aws credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-multiple-profiles) to use that has rights to publish to the `aws_asset_bucket`.
 
 ### Example invocations
 
     vagrant destroy && vagrant up
-    ffmpeg_version=ffmpeg-2.7.2 aws_asset_bucket=your_bucket_name profile=default ./publish.sh
+    ffmpeg_version=ffmpeg-4.1 aws_asset_bucket=your_bucket_name profile=default ./publish.sh
 
 ## Coming soon
 

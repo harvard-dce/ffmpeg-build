@@ -1,13 +1,12 @@
 #!/bin/bash
 
-source ./common.sh
+set -e
 
-cd $root_path/ffmpeg_sources
-git clone git://git.code.sf.net/p/opencore-amr/fdk-aac
+# libfdk_aac
+echo "Building fdk-aac version ${FDK_AAC_TAG}"
+git clone -b ${FDK_AAC_TAG} --depth 1 https://github.com/mstorsjo/fdk-aac
 cd fdk-aac
-git checkout $fdk_aac_tag
 autoreconf -fiv
-PATH="$root_path/$ffmpeg_version:$PATH" ./configure --prefix="$root_path/ffmpeg_build" --disable-shared
-make && make install && make distclean
-
-
+./configure --prefix="$FFMPEG_BUILD_DIR" --disable-shared
+make
+make install

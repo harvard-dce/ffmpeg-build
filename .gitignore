@@ -1,5 +1,4 @@
-ffmpeg_sources/
-ffmpeg_build/
-ffmpeg-*/
+builds/*
 *.tgz
-.vagrant/
+ffmpeg-*
+package/ff*

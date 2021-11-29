@@ -3,8 +3,8 @@
 set -e
 
 if [[ -z "$FFMPEG_VERSION" ]]; then
-	echo "FFMPEG_VERSION is not set!"
-	exit 1
+  echo "FFMPEG_VERSION is not set!"
+  exit 1
 fi
 
 export FFMPEG_BUILD_DIR="/ffmpeg_build/ffmpeg-${FFMPEG_VERSION}"
@@ -20,10 +20,14 @@ export YASM_VERSION=1.3.0
 export FDK_AAC_TAG=v2.0.2
 
 # https://sourceforge.net/projects/lame/files/
-export LAME_VERSOIN=3.100
+export LAME_VERSION=3.100
 
 # https://opus-codec.org/downloads/
 export OPUS_VERSION=1.3.1
+
+# https://xiph.org/downloads/
+export LIBOGG_VERSION=1.3.5
+export LIBVORBIS_VERSION=1.3.7
 
 # https://chromium.googlesource.com/webm/libvpx.git
 export LIBVPX_VERSION=v1.11.0
@@ -40,6 +44,7 @@ mkdir -p $FFMPEG_BUILD_DIR
 ./build_x264.sh
 ./build_lame.sh
 ./build_opus.sh
+./build_ogg_vorbis.sh
 ./build_libvpx.sh
 ./build_ffmpeg.sh
 

@@ -1,18 +1,50 @@
 #!/bin/bash
 
-source ./common.sh
+set -e
 
-rm -Rf $ffmpeg_version/* ffmpeg_build/* ffmpeg_sources/*
+if [[ -z "$FFMPEG_VERSION" ]]; then
+  echo "FFMPEG_VERSION is not set!"
+  exit 1
+fi
 
-# Build libraries
-sudo aptitude install -y autoconf automake build-essential libtool pkg-config texi2html
+export FFMPEG_BUILD_DIR="/ffmpeg_build/ffmpeg-${FFMPEG_VERSION}"
+export PATH=${FFMPEG_BUILD_DIR}/bin:$PATH
 
-# Client codec libraries
-sudo aptitude install -y libass-dev libfreetype6-dev libmp3lame-dev libogg-dev libopus-dev libsdl1.2-dev libtheora-dev libva-dev libvdpau-dev libvorbis-dev libxcb-shm0-dev libxcb-xfixes0-dev libxcb1-dev zlib1g-dev
+# https://www.nasm.us/
+export NASM_VERSION=2.15.05
+
+# http://yasm.tortall.net/Download.html
+export YASM_VERSION=1.3.0
+
+# https://github.com/mstorsjo/fdk-aac
+export FDK_AAC_TAG=v2.0.2
+
+# https://sourceforge.net/projects/lame/files/
+export LAME_VERSION=3.100
+
+# https://opus-codec.org/downloads/
+export OPUS_VERSION=1.3.1
+
+# https://xiph.org/downloads/
+export LIBOGG_VERSION=1.3.5
+export LIBVORBIS_VERSION=1.3.7
+
+# https://chromium.googlesource.com/webm/libvpx.git
+export LIBVPX_VERSION=v1.11.0
+
+# NOTE: the x264/x265 libraries don't seem to have a reliable versioning
+# process, so we just build from the master branch
+
+rm -rf $FFMPEG_BUILD_DIR
+mkdir -p $FFMPEG_BUILD_DIR
 
 ./build_nasm.sh
+./build_yasm.sh
 ./build_fdk_aac.sh
 ./build_x264.sh
+./build_lame.sh
+./build_opus.sh
+./build_ogg_vorbis.sh
 ./build_libvpx.sh
 ./build_ffmpeg.sh
 

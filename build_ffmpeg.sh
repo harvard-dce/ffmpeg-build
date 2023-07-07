@@ -1,30 +1,31 @@
 #!/bin/bash
 
-source ./common.sh
+set -e
 
-cd $root_path/ffmpeg_sources
-wget -q https://ffmpeg.org/releases/${ffmpeg_version}.tar.gz
-tar xfz ${ffmpeg_version}.tar.gz
+# ffmpeg
+ffmpeg_archive="ffmpeg-${FFMPEG_VERSION}.tar.bz2"
+curl -O -L https://ffmpeg.org/releases/$ffmpeg_archive
+tar xjvf $ffmpeg_archive
+cd ffmpeg-${FFMPEG_VERSION}
 
-cd ${ffmpeg_version}
-
-PATH="$root_path/$ffmpeg_version:$PATH" PKG_CONFIG_PATH="$root_path/ffmpeg_build/lib/pkgconfig" ./configure \
-  --prefix="$root_path/ffmpeg_build" \
+PATH="$FFMPEG_BUILD_DIR/bin:$PATH" PKG_CONFIG_PATH="$FFMPEG_BUILD_DIR/lib/pkgconfig" ./configure \
+  --prefix="$FFMPEG_BUILD_DIR" \
   --pkg-config-flags="--static" \
-  --extra-cflags="-I$root_path/ffmpeg_build/include" \
-  --extra-ldflags="-L$root_path/ffmpeg_build/lib" \
-  --bindir="$root_path/$ffmpeg_version" \
+  --extra-cflags="-I$FFMPEG_BUILD_DIR/include" \
+  --extra-ldflags="-L$FFMPEG_BUILD_DIR/lib" \
+  --extra-libs=-lpthread \
+  --extra-libs=-lm \
+  --bindir="$FFMPEG_BUILD_DIR/bin" \
   --enable-gpl \
-  --enable-libass \
   --enable-libfdk-aac \
   --enable-libfreetype \
   --enable-libmp3lame \
   --enable-libopus \
-  --enable-libtheora \
-  --enable-libvorbis \
   --enable-libvpx \
   --enable-libx264 \
+  --enable-libx265 \
+  --enable-libvorbis \
   --enable-nonfree
-PATH="$root_path/$ffmpeg_version:$PATH" make
+make
 make install
-make distclean
+hash -d $FFMPEG_BUILD_DIR/bin/ffmpeg
